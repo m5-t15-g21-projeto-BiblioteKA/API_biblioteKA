@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Copy(models.Model):
     available = models.BooleanField(default=False)
 
