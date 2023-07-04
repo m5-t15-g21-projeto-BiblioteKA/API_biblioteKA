@@ -36,20 +36,30 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
-        if self.instance is None and attrs["is_colaborator"] is True:
-            attrs["is_superuser"] = True
+        try:
+            if attrs["is_colaborator"] is True:
+                attrs["is_superuser"] = True
+                attrs["is_staff"] = True
+        except KeyError:
+            ...
 
         return super().validate(attrs)
 
     def create(self, validated_data: dict):
         return User.objects.create_user(**validated_data)
-    
+
     def update(self, instance: User, validated_data: dict) -> User:
         for key, value in validated_data.items():
-            if key == 'password':
+            if key == "password":
                 value = make_password(value)
             setattr(instance, key, value)
 
         instance.save()
 
         return instance
+
+
+class UserStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["can_locate"]
