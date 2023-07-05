@@ -1,9 +1,3 @@
-from rest_framework.generics import (
-    ListAPIView,
-    CreateAPIView,
-    RetrieveUpdateDestroyAPIView,
-    ListCreateAPIView,
-)
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
@@ -13,7 +7,7 @@ from rest_framework import generics
 from .permissions import IsAccountOwnerOrReadOnly
 
 
-class UserView(ListCreateAPIView):
+class UserView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -26,7 +20,7 @@ class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
 
 
-class UserCanLocateView(ListAPIView):
+class UserCanLocateView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAdminUser]
 
