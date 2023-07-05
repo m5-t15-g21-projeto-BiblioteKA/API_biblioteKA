@@ -18,8 +18,8 @@ class RentSerializer(serializers.ModelSerializer):
     book_details = BookSerializer(source='copy.book', read_only=True)
 
     def create(self, validated_data):
-        book_id = validated_data.pop("book", None)
         user_id = validated_data.pop("user_id", None)
+        book_id = validated_data.pop("book", None)
 
         try:
             user = User.objects.get(id=user_id)
