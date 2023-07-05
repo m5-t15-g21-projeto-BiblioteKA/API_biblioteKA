@@ -36,12 +36,10 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
     def validate(self, attrs):
-        try:
-            if attrs["is_colaborator"] is True:
-                attrs["is_superuser"] = True
-                attrs["is_staff"] = True
-        except KeyError:
-            ...
+        is_colaborator = attrs.get("is_colaborator", False)
+        if is_colaborator:
+            attrs["is_superuser"] = True
+            attrs["is_staff"] = True
 
         return super().validate(attrs)
 
