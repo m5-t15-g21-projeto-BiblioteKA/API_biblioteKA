@@ -3,7 +3,7 @@ from .models import User
 from rest_framework.views import View
 
 
-class IsAccountOwner(permissions.BasePermission):
+class IsAccountOwnerOrReadOnly(permissions.BasePermission):
     def has_object_permission(self, request, view: View, obj: User) -> bool:
         if request.method in permissions.SAFE_METHODS:
             return True

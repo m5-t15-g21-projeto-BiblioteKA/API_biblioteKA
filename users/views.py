@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 from .models import User
 from .serializers import UserSerializer, UserStatusSerializer
 from rest_framework import generics
-from .permissions import IsAccountOwner
+from .permissions import IsAccountOwnerOrReadOnly
 
 
 class UserView(ListCreateAPIView):
@@ -20,7 +20,7 @@ class UserView(ListCreateAPIView):
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAccountOwner]
+    permission_classes = [IsAccountOwnerOrReadOnly]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
