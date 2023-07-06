@@ -13,8 +13,4 @@ class RentDetailView(generics.CreateAPIView):
 
 class RentReturnView(generics.UpdateAPIView):
     serializer_class = RentDevolutionSerializer
-
-    def get_queryset(self):
-        rent_id = self.kwargs.get('pk')
-        rent = get_object_or_404(Rent, id=rent_id)
-        return Rent.objects.filter(id=rent_id)
+    queryset = Rent.objects.all()

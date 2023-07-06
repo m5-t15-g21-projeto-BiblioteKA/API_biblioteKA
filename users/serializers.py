@@ -60,4 +60,11 @@ class UserSerializer(serializers.ModelSerializer):
 class UserStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["can_locate"]
+        fields = [
+            "id",
+            "name",
+            "username",
+            "email",
+            "is_colaborator",
+            "can_locate",
+        ]
