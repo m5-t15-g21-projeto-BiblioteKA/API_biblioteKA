@@ -1,19 +1,13 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-	<title>BiblioteKA</title>
-</head>
 
-<body>
 	<h1>BiblioteKA</h1>
 
-	<h2>Objetivo do Projeto</h2>
+	## :memo:<h2>Objetivo do Projeto</h2>
 	<p>
 		BiblioteKA é uma aplicação web desenvolvida para a gestão de uma biblioteca. Ela permite o cadastro e gerenciamento de livros, controle de empréstimos, além de possibilitar o cadastro e autenticação de usuários.
 	</p>
 
-	<h2>Como Usar a API</h2>
+	## :wrench:<h2>Como Usar a API</h2>
 	<p>
 		A API do BiblioteKA oferece endpoints para interagir com a aplicação e realizar diversas operações. Você pode encontrar a documentação completa da API no arquivo <code>api-docs.md</code>. Consulte a documentação para obter mais detalhes sobre como usar cada endpoint e quais parâmetros são necessários.
 	</p>
