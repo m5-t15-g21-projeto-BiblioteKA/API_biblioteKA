@@ -53,29 +53,47 @@ class RentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rent
-        fields = ["id", "date_rent", "date_limit",
-                  "date_devolution", "user", "user_id", "copy", "book"]
+        fields = [
+            "id",
+            "date_rent",
+            "date_limit",
+            "date_devolution",
+            "user",
+            "user_id",
+            "copy",
+            "book",
+        ]
 
 
 class RentDevolutionSerializer(serializers.ModelSerializer):
-    user_id = serializers.IntegerField(write_only=True)
+    user = UserStatusSerializer()
+    copy = CopySerialzer()
 
     def update(self, instance: Rent, validated_data):
-        validated_data['date_devolution'] = datetime.now().date()
-        
-        # date_limit = validated_data['date_limit']
-        # date_devolution = validated_data['date_devolution']
-        # if date_devolution > date_limit:
-        
-        # print(instance.user)
+        if instance.date_devolution:
+            raise ValidationError({"msg": "Copy already returned"})
+        current_date = datetime.now().date()
+        instance.date_devolution = current_date
+        instance.save()
+
+        print(instance.date_devolution > instance.date_limit)
+
+        if instance.date_devolution > instance.date_limit:
+            instance.user.can_locate = False
+            instance.user.save()
+
+        instance.copy.available = True
+        instance.copy.save()
 
         return instance
 
     class Meta:
         model = Rent
-        fields = ["id",
-                  "date_devolution",
-                  "date_limit",
-                  "user_id",
-                  "copy_id",
-                  ]
+        fields = [
+            "id",
+            "date_rent",
+            "date_limit",
+            "date_devolution",
+            "user",
+            "copy",
+        ]
