@@ -1,12 +1,12 @@
 
 
-## :books: <h1>BiblioteKA</h1>
+## :books: BiblioteKA
 
-## :dart: <h2>Objetivo do Projeto</h2>
+## :dart: Objetivo do Projeto
 	
 BiblioteKA é uma aplicação web desenvolvida para a gestão de uma biblioteca. Ela permite o cadastro e gerenciamento de livros, controle de empréstimos, além de possibilitar o cadastro e autenticação de usuários.
 
-## :rocket: <h2>Como Usar a API</h2>
+## :rocket: Como Usar a API
 	
 A API do BiblioteKA oferece endpoints para interagir com a aplicação e realizar diversas operações. Você pode encontrar a documentação completa da API no arquivo <code>api-docs.md</code>. Consulte a documentação para obter mais detalhes sobre como usar cada endpoint e quais parâmetros são necessários.
 
@@ -23,7 +23,7 @@ A API do BiblioteKA oferece endpoints para interagir com a aplicação e realiza
 |`/api/users/:user_id/`          |Detalhes de um usuário específico      |Usuário autenticado|
 |`/api/users/:user_id/status/`   |Verificar o status de um usuário       |Administrador      |
 
-## :wrench: <h2>Dificuldades do Projeto</h2>
+## :wrench: Dificuldades do Projeto
 
 Durante o desenvolvimento do projeto BiblioteKA, foram encontradas algumas dificuldades, incluindo:
 
@@ -31,7 +31,7 @@ Durante o desenvolvimento do projeto BiblioteKA, foram encontradas algumas dific
 - Implementação do bloqueio de novos empréstimos.
 - Controle de permissões e autenticação dos usuários.
 
-## :handshake: <h2>Colaboradores</h2>
+## :handshake: Colaboradores
 
 O projeto BiblioteKA foi desenvolvido por uma equipe de colaboradores dedicados. Agradecemos a contribuição de todos os envolvidos. Os colaboradores que participaram deste projeto são:
 	
