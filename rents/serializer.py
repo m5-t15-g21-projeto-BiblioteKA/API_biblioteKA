@@ -8,6 +8,7 @@ from copies.serializers import CopySerialzer
 from books.seriliazers import BookSerializer
 from copies.models import Copy
 from users.models import User
+from users.serializers import UserStatusSerializer
 from datetime import datetime, timedelta
 
 
@@ -15,7 +16,7 @@ class RentSerializer(serializers.ModelSerializer):
     book = serializers.IntegerField(write_only=True)
     user_id = serializers.IntegerField(write_only=True)
     user = UserSerializer(read_only=True)
-    book_details = BookSerializer(source='copy.book', read_only=True)
+    copy = CopySerialzer(read_only=True)
 
     def create(self, validated_data):
         user_id = validated_data.pop("user_id", None)
@@ -27,28 +28,54 @@ class RentSerializer(serializers.ModelSerializer):
             raise ValidationError({"msg": "Invalid user ID"})
 
         copy = Copy.objects.filter(book_id=book_id, available=True).first()
+        if user.can_locate:
+            if copy:
+                validated_data["copy"] = copy
+                copy.available = False
+                copy.save()
+            else:
+                raise ValidationError({"msg": "Copy unavailable"})
 
-        if copy:
-            validated_data["copy"] = copy
-            copy.available = False
-            copy.save()
+            date_rent = validated_data.get("date_rent", datetime.now().date())
+            date_limit = date_rent + timedelta(days=15)
+            # checar se nao está caindo no final de semana
+            if date_limit.weekday() >= 5:
+                days_to_add = 7 - date_limit.weekday()
+                date_limit += timedelta(days=days_to_add)
+
+            validated_data["date_limit"] = date_limit
+            validated_data["user"] = user
+            validated_data["user_id"] = user.id
+
+            return Rent.objects.create(**validated_data)
         else:
-            raise ValidationError({"msg": "Copy unavailable"})
-
-        date_rent = validated_data.get("date_rent", datetime.now().date())
-        date_limit = date_rent + timedelta(days=15)
-        # checar se nao está caindo no final de semana
-        if date_limit.weekday() >= 5:
-            days_to_add = 7 - date_limit.weekday()
-            date_limit += timedelta(days=days_to_add)
-
-        validated_data["date_limit"] = date_limit
-        validated_data["user"] = user
-        validated_data["user_id"] = user.id
-
-        return Rent.objects.create(**validated_data)
+            raise ValidationError({"msg": "User can't locate a book"})
 
     class Meta:
         model = Rent
         fields = ["id", "date_rent", "date_limit",
-                  "date_devolution", "user", "user_id", "book", "book_details"]
+                  "date_devolution", "user", "user_id", "copy", "book"]
+
+
+class RentDevolutionSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(write_only=True)
+
+    def update(self, instance: Rent, validated_data):
+        validated_data['date_devolution'] = datetime.now().date()
+        
+        # date_limit = validated_data['date_limit']
+        # date_devolution = validated_data['date_devolution']
+        # if date_devolution > date_limit:
+        
+        # print(instance.user)
+
+        return instance
+
+    class Meta:
+        model = Rent
+        fields = ["id",
+                  "date_devolution",
+                  "date_limit",
+                  "user_id",
+                  "copy_id",
+                  ]
