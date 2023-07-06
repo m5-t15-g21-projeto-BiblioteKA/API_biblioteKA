@@ -39,4 +39,4 @@ O projeto BiblioteKA foi desenvolvido por uma equipe de colaboradores dedicados.
 - João Fernandes <a href="">LinkedIn</a> | <a href="https://github.com/ja1rocambole">GitHub</a>
 - Nagilo Santos <a href="https://www.linkedin.com/in/nagilo-santos-bb1b93199/">LinkedIn</a> | <a href="https://github.com/nagilosantos">GitHub</a>
 - Vitor Hugo Mendes <a href="https://www.linkedin.com/in/vitorhugomendes/">LinkedIn</a> | <a href="https://github.com/vitorhugomendes">GitHub</a>
-		
+
