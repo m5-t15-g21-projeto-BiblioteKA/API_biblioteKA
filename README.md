@@ -13,15 +13,22 @@ A API do BiblioteKA oferece endpoints para interagir com a aplicação e realiza
 
 <h2>Tabela de Rotas, Funcionalidades e Permissões</h2>
 
-|Rota                            |Funcionalidade                        |Permissões        |
-|--------------------------------|--------------------------------------|------------------|
-|`/api/books/`                   |Listar todos os livros                 |Usuário autenticado|
-|`/api/books/:book_id/`          |Detalhes de um livro específico        |Usuário autenticado|
-|`/api/books/:book_id/rent/`     |Realizar empréstimo de um livro        |Usuário autenticado|
-|`/api/rents/`                   |Realizar o registro de um empréstimo   |Usuário autenticado|
-|`/api/users/`                   |Listar todos os usuários               |Usuário autenticado|
-|`/api/users/:user_id/`          |Detalhes de um usuário específico      |Usuário autenticado|
-|`/api/users/:user_id/status/`   |Verificar o status de um usuário       |Administrador      |
+| Rota                         | Funcionalidade                     | Permissões            | Tipo de Requisição |
+|------------------------------|-----------------------------------|-----------------------|-------------------|
+| `/api/books/`                | Listar todos os livros            | Usuário autenticado   | GET               |
+| `/api/books/`                | Cadastrar um novo livro           | Usuário autenticado   | POST              |
+| `/api/books/{id}/`           | Detalhes de um livro específico   | Usuário autenticado   | GET               |
+| `/api/rents/`                | Realizar empréstimo de um livro   | Usuário autenticado   | POST              |
+| `/api/rents/{id}`            | Realiza a devolução de um livro emprestado | Usuário autenticado | PATCH      |
+| `/api/users/`                | Listar todos os usuários          | Usuário autenticado   | GET               |
+| `/api/users/`                | Cadastrar um novo usuário         | Qualquer usuário      | POST              |
+| `/api/users/{id}/`           | Detalhes de um usuário específico | Usuário autenticado   | GET               |
+| `/api/users/{id}/`           | Atualiza os dados de um usuário específico | Usuário autenticado   | PATCH    |
+| `/api/users/{id}/`           | Deleta de um usuário específico   | Administrador         | DELETE            |
+| `/api/users/{id}/status/`    | Verificar o status de um usuário  | Administrador         | GET               |
+| `/api/users/{id}/history/`   | Verificar o histórico de empréstimos de um usuário | Usuário autenticado | GET|
+| `/api/users/login/`          | Autentica um usuário cadastrado   | Qualquer usuário      | POST              |
+
 
 ## :wrench: Dificuldades do Projeto
 
