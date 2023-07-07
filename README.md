@@ -43,7 +43,7 @@ Durante o desenvolvimento do projeto BiblioteKA, foram encontradas algumas dific
 O projeto BiblioteKA foi desenvolvido por uma equipe de colaboradores dedicados. Agradecemos a contribuição de todos os envolvidos. Os colaboradores que participaram deste projeto são:
 	
 - Adryel César <a href="https://www.linkedin.com/in/adryel-bueno">LinkedIn</a> | <a href="https://github.com/adryel01">GitHub</a>
-- João Fernandes <a href="">LinkedIn</a> | <a href="https://github.com/ja1rocambole">GitHub</a>
+- João Fernandes <a href="https://www.linkedin.com/in/jo%C3%A3o-fernandes-da-silva-neto/">LinkedIn</a> | <a href="https://github.com/ja1rocambole">GitHub</a>
 - Nagilo Santos <a href="https://www.linkedin.com/in/nagilo-santos-bb1b93199/">LinkedIn</a> | <a href="https://github.com/nagilosantos">GitHub</a>
 - Vitor Hugo Mendes <a href="https://www.linkedin.com/in/vitorhugomendes/">LinkedIn</a> | <a href="https://github.com/vitorhugomendes">GitHub</a>
 
