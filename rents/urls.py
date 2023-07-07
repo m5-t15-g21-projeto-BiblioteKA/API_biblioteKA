@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import RentDetailView, RentReturnView
+from .views import RentDetailView, RentReturnView, historyView
 
 
 urlpatterns = [
@@ -8,4 +8,5 @@ urlpatterns = [
     path(
         "rents/<int:pk>/return/", RentReturnView.as_view()
     ),
+    path("users/<int:pk>/history/", historyView.as_view()),
 ]

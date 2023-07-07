@@ -76,8 +76,6 @@ class RentDevolutionSerializer(serializers.ModelSerializer):
         instance.date_devolution = current_date
         instance.save()
 
-        print(instance.date_devolution > instance.date_limit)
-
         if instance.date_devolution > instance.date_limit:
             instance.user.can_locate = False
             instance.user.save()
