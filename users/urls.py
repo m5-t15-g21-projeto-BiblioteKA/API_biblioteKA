@@ -7,4 +7,5 @@ urlpatterns = [
     path("users/<int:pk>/", views.UserDetailView.as_view()),
     path("users/<int:pk>/status/", views.UserCanLocateView.as_view()),
     path("users/login/", jwt_views.TokenObtainPairView.as_view()),
+    path("users/<int:pk>/history/", views.UserHistoryView.as_view()),
 ]
