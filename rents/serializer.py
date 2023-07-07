@@ -1,5 +1,5 @@
 from rest_framework import serializers, status
-from rest_framework.exceptions import ValidationError
+from rest_framework.exceptions import ValidationError, NotFound, PermissionDenied
 
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Rent
@@ -25,7 +25,7 @@ class RentSerializer(serializers.ModelSerializer):
         try:
             user = User.objects.get(id=user_id)
         except User.DoesNotExist:
-            raise ValidationError({"msg": "Invalid user ID"})
+            raise NotFound({"msg": "Invalid user ID"})
 
         copy = Copy.objects.filter(book_id=book_id, available=True).first()
         if user.can_locate:
@@ -49,7 +49,7 @@ class RentSerializer(serializers.ModelSerializer):
 
             return Rent.objects.create(**validated_data)
         else:
-            raise ValidationError({"msg": "User can't locate a book"})
+            raise PermissionDenied({"msg": "User can't locate a book"})
 
     class Meta:
         model = Rent
