@@ -1,10 +1,12 @@
+from rest_framework import generics
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
 from .models import User
 from .serializers import UserSerializer, UserStatusSerializer
-from rest_framework import generics
-from .permissions import IsAccountOwnerOrReadOnly
+from .permissions import IsAccountOwnerOrReadOnly, IsAccountOwnerOrAdmin
+from rents.models import Rent
+from rents.serializer import RentSerializer
 
 
 class UserView(generics.ListCreateAPIView):
@@ -31,3 +33,15 @@ class UserCanLocateView(generics.ListAPIView):
         get_object_or_404(User, pk=user_pk)
 
         return User.objects.filter(pk=user_pk)
+
+
+class UserHistoryView(generics.ListAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAccountOwnerOrAdmin]
+
+    serializer_class = RentSerializer
+
+    def get_queryset(self):
+        id = self.kwargs["pk"]
+        user = User.objects.get(id=id)
+        return Rent.objects.filter(user=user)

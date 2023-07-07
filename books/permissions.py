@@ -7,6 +7,4 @@ class IsColaboratorOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
 
-        return bool(
-            request.user.is_authenticated and request.user.is_colaborator
-        )
+        return bool(request.user.is_colaborator)
