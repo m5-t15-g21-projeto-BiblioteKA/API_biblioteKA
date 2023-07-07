@@ -8,7 +8,7 @@ BiblioteKA é uma aplicação web desenvolvida para a gestão de uma biblioteca.
 
 ## :rocket: Como Usar a API
 	
-A API do BiblioteKA oferece endpoints para interagir com a aplicação e realizar diversas operações. Você pode encontrar a documentação completa da API através deste <a href='https://m5-t15-deployfinalproject.onrender.com/api/docs/'>link</a>. Consulte a documentação para obter mais detalhes sobre como usar cada endpoint e quais parâmetros são necessários.
+A API do BiblioteKA oferece endpoints para interagir com a aplicação e realizar diversas operações. Você pode encontrar a documentação completa da API através deste <a href='https://m5-t15-deployfinalproject.onrender.com/api/docs/' target='_blank'>link</a>. Consulte a documentação para obter mais detalhes sobre como usar cada endpoint e quais parâmetros são necessários.
 
 
 <h2>Tabela de Rotas, Funcionalidades e Permissões</h2>
