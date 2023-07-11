@@ -15,7 +15,7 @@ A API do BiblioteKA oferece endpoints para interagir com a aplicação e realiza
 
 | Rota                         | Funcionalidade                     | Permissões            | Tipo de Requisição |
 |------------------------------|-----------------------------------|-----------------------|-------------------|
-| `/api/books/`                | Lista todos os livros            | Usuário autenticado   | GET               |
+| `/api/books/`                | Lista todos os livros            | Qualquer usuário      | GET               |
 | `/api/books/`                | Cadastra um novo livro           | Usuário autenticado   | POST              |
 | `/api/books/{id}/`           | Detalhes de um livro específico   | Usuário autenticado   | GET               |
 | `/api/rents/`                | Realiza empréstimo de um livro   | Usuário autenticado   | POST              |
