@@ -4,14 +4,17 @@ from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
 from .models import User
 from .serializers import UserSerializer, UserStatusSerializer
-from .permissions import IsAccountOwnerOrReadOnly, IsAccountOwnerOrAdmin, CreateOnly
+from .permissions import (
+    IsAccountOwnerOrAdmin,
+    IsAdminOrCreateOnly,
+)
 from rents.models import Rent
 from rents.serializer import RentSerializer
 
 
 class UserView(generics.ListCreateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [CreateOnly]
+    permission_classes = [IsAdminOrCreateOnly]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -19,7 +22,7 @@ class UserView(generics.ListCreateAPIView):
 
 class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAccountOwnerOrReadOnly]
+    permission_classes = [IsAccountOwnerOrAdmin]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
