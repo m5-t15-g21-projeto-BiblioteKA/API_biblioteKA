@@ -3,15 +3,18 @@ from .models import User
 from rest_framework.views import Request, View
 
 
-class IsAccountOwnerOrReadOnly(permissions.BasePermission):
+class IsAdminOrCreateOnly(permissions.BasePermission):
     def has_permission(self, request: Request, view: View) -> bool:
         if request.method in permissions.SAFE_METHODS:
-            return True
-        user = User.objects.get(pk=view.kwargs["pk"])
-        return bool(request.user == user)
+            return bool(request.user.is_colaborator)
+        return True
 
 
 class IsAccountOwnerOrAdmin(permissions.BasePermission):
     def has_permission(self, request: Request, view: View) -> bool:
         user = User.objects.get(pk=view.kwargs["pk"])
+
+        if not request.user.is_authenticated:
+            return False
+
         return bool(request.user.is_colaborator or request.user == user)
