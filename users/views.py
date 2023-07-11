@@ -4,12 +4,15 @@ from rest_framework.permissions import IsAdminUser
 from django.shortcuts import get_object_or_404
 from .models import User
 from .serializers import UserSerializer, UserStatusSerializer
-from .permissions import IsAccountOwnerOrReadOnly, IsAccountOwnerOrAdmin
+from .permissions import IsAccountOwnerOrReadOnly, IsAccountOwnerOrAdmin, CreateOnly
 from rents.models import Rent
 from rents.serializer import RentSerializer
 
 
 class UserView(generics.ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [CreateOnly]
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

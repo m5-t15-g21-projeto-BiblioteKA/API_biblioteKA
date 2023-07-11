@@ -11,7 +11,21 @@ class IsAccountOwnerOrReadOnly(permissions.BasePermission):
         return bool(request.user == user)
 
 
+class CreateOnly(permissions.BasePermission):
+    def has_permission(self, request: Request, view: View) -> bool:
+        if request.method in permissions.SAFE_METHODS:
+            if request.user.is_authenticated:
+                return bool(request.user.is_colaborator)
+            else:
+                return False
+        return True
+
+
 class IsAccountOwnerOrAdmin(permissions.BasePermission):
     def has_permission(self, request: Request, view: View) -> bool:
         user = User.objects.get(pk=view.kwargs["pk"])
+
+        if not request.user.is_authenticated:
+            return False
+
         return bool(request.user.is_colaborator or request.user == user)
