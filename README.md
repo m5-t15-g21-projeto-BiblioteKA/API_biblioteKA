@@ -15,18 +15,18 @@ A API do BiblioteKA oferece endpoints para interagir com a aplicação e realiza
 
 | Rota                         | Funcionalidade                     | Permissões            | Tipo de Requisição |
 |------------------------------|-----------------------------------|-----------------------|-------------------|
-| `/api/books/`                | Listar todos os livros            | Usuário autenticado   | GET               |
-| `/api/books/`                | Cadastrar um novo livro           | Usuário autenticado   | POST              |
+| `/api/books/`                | Lista todos os livros            | Usuário autenticado   | GET               |
+| `/api/books/`                | Cadastra um novo livro           | Usuário autenticado   | POST              |
 | `/api/books/{id}/`           | Detalhes de um livro específico   | Usuário autenticado   | GET               |
-| `/api/rents/`                | Realizar empréstimo de um livro   | Usuário autenticado   | POST              |
+| `/api/rents/`                | Realiza empréstimo de um livro   | Usuário autenticado   | POST              |
 | `/api/rents/{id}`            | Realiza a devolução de um livro emprestado | Usuário autenticado | PATCH      |
-| `/api/users/`                | Listar todos os usuários          | Usuário autenticado   | GET               |
-| `/api/users/`                | Cadastrar um novo usuário         | Qualquer usuário      | POST              |
+| `/api/users/`                | Lista todos os usuários          | Usuário autenticado   | GET               |
+| `/api/users/`                | Cadastra um novo usuário         | Qualquer usuário      | POST              |
 | `/api/users/{id}/`           | Detalhes de um usuário específico | Usuário autenticado   | GET               |
 | `/api/users/{id}/`           | Atualiza os dados de um usuário específico | Usuário autenticado   | PATCH    |
-| `/api/users/{id}/`           | Deleta de um usuário específico   | Administrador         | DELETE            |
-| `/api/users/{id}/status/`    | Verificar o status de um usuário  | Administrador         | GET               |
-| `/api/users/{id}/history/`   | Verificar o histórico de empréstimos de um usuário | Usuário autenticado | GET|
+| `/api/users/{id}/`           | Deleta um usuário específico   | Administrador         | DELETE            |
+| `/api/users/{id}/status/`    | Verifica o status de um usuário  | Administrador         | GET               |
+| `/api/users/{id}/history/`   | Verifica o histórico de empréstimos de um usuário | Usuário autenticado | GET|
 | `/api/users/login/`          | Autentica um usuário cadastrado   | Qualquer usuário      | POST              |
 
 
